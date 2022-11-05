@@ -44,7 +44,7 @@ from DB.db_helper import *
 #    os.system('cls' if os.name == 'nt' else 'clear')
 #    pd.options.display.float_format = '{:.4f}'.format
 #    pd.set_option('display.max_columns', None)
-global CP, PP, DAA , VAA , BAA , ABAA, ADM ,ODM
+global CP, PP, DAA , VAA , BAA , ABAA, ADM ,ODM, Plot_Ena
          
 class AA:
     
@@ -53,6 +53,8 @@ class AA:
         Sampling = 'Month'
         clear_output(wait=True)
 
+        Plot_Ena = False
+        
         CP = True
         PP = True
         DAA = True
@@ -204,76 +206,62 @@ class AA:
         df_ALL_LV.to_excel('Report/AA/df_ALL_LV.xlsx')
 
         clear_output(wait=True)
+        
+        if Plot_Ena == True:
+            print('# Plotting.. #')
+            mpl.rcParams['axes.unicode_minus'] = False
+            plt.rcParams['font.size'] = 15
+            plt.rcParams['font.family'] = 'Arial'
 
-        print('# Plotting.. #')
-        mpl.rcParams['axes.unicode_minus'] = False
-        plt.rcParams['font.size'] = 15
-        plt.rcParams['font.family'] = 'Arial'
+            plt.figure(figsize=(20,10))
+            if  CP == True: 
+                sns.lineplot(data=df_ALL['CP_BAL'] ,label='CP Original')
+            else:pass
+            if  PP == True: 
+                sns.lineplot(data=df_ALL['PP_BAL'] ,label='PP Original')
+            else:pass
+            if  DAA == True: 
+                sns.lineplot(data=df_ALL['DAA_BAL'],label='DAA Original')
+            else:pass
+            if  VAA == True: 
+                sns.lineplot(data=df_ALL['VAA_BAL'],label='VAA Original')
+            else:pass
+            if  BAA == True: 
+                sns.lineplot(data=df_ALL['BAA_BAL'],label='BAA Original')
+            else:pass
+            if  ABAA == True: 
+                sns.lineplot(data=df_ALL['ABAA_BAL'],label='ABAA Original')
+            else:pass
+            if  ADM == True: 
+                sns.lineplot(data=df_ALL['ADM_BAL'],label='ADM Original')
+            else:pass
 
-        plt.figure(figsize=(20,10))
-        if  CP == True: 
-            sns.lineplot(data=df_ALL['CP_BAL'] ,label='CP Original')
+            plt.figure(figsize=(20,10))
+            if  CP == True: 
+                sns.lineplot(data=df_ALL_LV['CP_BAL'] ,label='CP Leverage')
+            else:pass
+            if  PP == True: 
+                sns.lineplot(data=df_ALL_LV['PP_BAL'] ,label='PP Leverage')
+            else:pass
+            if  DAA == True: 
+                sns.lineplot(data=df_ALL_LV['DAA_BAL'],label='DAA Leverage')
+            else:pass
+            if  VAA == True: 
+                sns.lineplot(data=df_ALL_LV['VAA_BAL'],label='VAA Leverage')
+            else:pass
+            if  BAA == True: 
+                sns.lineplot(data=df_ALL_LV['BAA_BAL'],label='BAA Leverage')
+            else:pass
+            if  ABAA == True: 
+                sns.lineplot(data=df_ALL_LV['ABAA_BAL'],label='ABAA Leverage')
+            else:pass
+            if  ADM == True: 
+                sns.lineplot(data=df_ALL_LV['ADM_BAL'],label='ADM Leverage')
+            else:pass
         else:pass
-        if  PP == True: 
-            sns.lineplot(data=df_ALL['PP_BAL'] ,label='PP Original')
-        else:pass
-        if  DAA == True: 
-            sns.lineplot(data=df_ALL['DAA_BAL'],label='DAA Original')
-        else:pass
-        if  VAA == True: 
-            sns.lineplot(data=df_ALL['VAA_BAL'],label='VAA Original')
-        else:pass
-        if  BAA == True: 
-            sns.lineplot(data=df_ALL['BAA_BAL'],label='BAA Original')
-        else:pass
-        if  ABAA == True: 
-            sns.lineplot(data=df_ALL['ABAA_BAL'],label='ABAA Original')
-        else:pass
-        if  ADM == True: 
-            sns.lineplot(data=df_ALL['ADM_BAL'],label='ADM Original')
-        else:pass
-
-        plt.figure(figsize=(20,10))
-        if  CP == True: 
-            sns.lineplot(data=df_ALL_LV['CP_BAL'] ,label='CP Leverage')
-        else:pass
-        if  PP == True: 
-            sns.lineplot(data=df_ALL_LV['PP_BAL'] ,label='PP Leverage')
-        else:pass
-        if  DAA == True: 
-            sns.lineplot(data=df_ALL_LV['DAA_BAL'],label='DAA Leverage')
-        else:pass
-        if  VAA == True: 
-            sns.lineplot(data=df_ALL_LV['VAA_BAL'],label='VAA Leverage')
-        else:pass
-        if  BAA == True: 
-            sns.lineplot(data=df_ALL_LV['BAA_BAL'],label='BAA Leverage')
-        else:pass
-        if  ABAA == True: 
-            sns.lineplot(data=df_ALL_LV['ABAA_BAL'],label='ABAA Leverage')
-        else:pass
-        if  ADM == True: 
-            sns.lineplot(data=df_ALL_LV['ADM_BAL'],label='ADM Leverage')
-        else:pass
-
-        #plt.figure(figsize=(20,10))
-        #sns.lineplot(data=df_ALL['CP_DD'] ,label='CP Original')
-        #sns.lineplot(data=df_ALL['PP_DD'] ,label='PP Original')
-        #sns.lineplot(data=df_ALL['DAA_DD'],label='DAA Original')
-        #sns.lineplot(data=df_ALL['VAA_DD'],label='VAA Original')
-        #sns.lineplot(data=df_ALL['BAA_DD'],label='BAA Original')
-        #sns.lineplot(data=df_ALL['ADM_DD'],label='ADM Original')
-    #
-        #plt.figure(figsize=(20,10))
-        #sns.lineplot(data=df_ALL_LV['CP_DD'] ,label='CP Leverage')
-        #sns.lineplot(data=df_ALL_LV['PP_DD'] ,label='PP Leverage')    
-        #sns.lineplot(data=df_ALL_LV['DAA_DD'],label='DAA Leverage')
-        #sns.lineplot(data=df_ALL_LV['VAA_DD'],label='VAA Leverage')
-        #sns.lineplot(data=df_ALL_LV['BAA_DD'],label='BAA Leverage')
-        #sns.lineplot(data=df_ALL_LV['ADM_DD'],label='ADM Leverage')
-
+        
         print('# Calculate CAGR & MDD.. #')
-        if  CP == True:        
+        if  CP == True:
             CAGR_CP = qs.stats.cagr(df_ALL['CP_BAL'])
             CAGR_CP_Lv = qs.stats.cagr(df_ALL_LV['CP_BAL'])
             MDD_CP = qs.stats.max_drawdown(df_ALL['CP_BAL'])
@@ -296,6 +284,10 @@ class AA:
             CAGR_DAA_Lv = qs.stats.cagr(df_ALL_LV['DAA_BAL'])
             MDD_DAA = qs.stats.max_drawdown(df_ALL['DAA_BAL'])
             MDD_DAA_Lv = qs.stats.max_drawdown(df_ALL_LV['DAA_BAL'])
+            df_ALL_T['DAA']['CAGR'] = round(CAGR_DAA,2)
+            df_ALL_T['DAA']['MDD'] = round(MDD_DAA,2)
+            df_ALL_T['DAA_LV']['CAGR'] = round(CAGR_DAA_Lv,2)
+            df_ALL_T['DAA_LV']['MDD'] = round(MDD_DAA_Lv,2)
             print('#'*50)
             print('DAA  (Ori) - CAGR : {}'.format(round(CAGR_DAA*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_DAA*100,2)) + '%')
             print('DAA  (Lev) - CAGR : {}'.format(round(CAGR_DAA_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_DAA_Lv*100,2)) + '%')
@@ -304,7 +296,11 @@ class AA:
             CAGR_VAA = qs.stats.cagr(df_ALL['VAA_BAL'])
             CAGR_VAA_Lv = qs.stats.cagr(df_ALL_LV['VAA_BAL'])
             MDD_VAA = qs.stats.max_drawdown(df_ALL['VAA_BAL'])
-            MDD_VAA_Lv = qs.stats.max_drawdown(df_ALL_LV['VAA_BAL'])   
+            MDD_VAA_Lv = qs.stats.max_drawdown(df_ALL_LV['VAA_BAL'])
+            df_ALL_T['VAA']['CAGR'] = round(CAGR_VAA,2)
+            df_ALL_T['VAA']['MDD'] = round(MDD_VAA,2)
+            df_ALL_T['VAA_LV']['CAGR'] = round(CAGR_VAA_Lv,2)
+            df_ALL_T['VAA_LV']['MDD'] = round(MDD_VAA_Lv,2)   
             print('#'*50)
             print('VAA  (Ori) - CAGR : {}'.format(round(CAGR_VAA*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_VAA*100,2)) + '%')
             print('VAA  (Lev) - CAGR : {}'.format(round(CAGR_VAA_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_VAA_Lv*100,2)) + '%')
@@ -314,6 +310,10 @@ class AA:
             CAGR_BAA_Lv = qs.stats.cagr(df_ALL_LV['BAA_BAL'])
             MDD_BAA = qs.stats.max_drawdown(df_ALL['BAA_BAL'])
             MDD_BAA_Lv = qs.stats.max_drawdown(df_ALL_LV['BAA_BAL'])
+            df_ALL_T['BAA']['CAGR'] = round(CAGR_BAA,2)
+            df_ALL_T['BAA']['MDD'] = round(MDD_BAA,2)
+            df_ALL_T['BAA_LV']['CAGR'] = round(CAGR_BAA_Lv,2)
+            df_ALL_T['BAA_LV']['MDD'] = round(MDD_BAA_Lv,2)  
             print('#'*50)
             print('BAA  (Ori) - CAGR : {}'.format(round(CAGR_BAA*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_BAA*100,2)) + '%')
             print('BAA  (Lev) - CAGR : {}'.format(round(CAGR_BAA_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_BAA_Lv*100,2)) + '%')
@@ -323,6 +323,10 @@ class AA:
             CAGR_ABAA_Lv = qs.stats.cagr(df_ALL_LV['ABAA_BAL'])
             MDD_ABAA = qs.stats.max_drawdown(df_ALL['ABAA_BAL'])
             MDD_ABAA_Lv = qs.stats.max_drawdown(df_ALL_LV['ABAA_BAL'])
+            df_ALL_T['ABAA']['CAGR'] = round(CAGR_ABAA,2)
+            df_ALL_T['ABAA']['MDD'] = round(MDD_ABAA,2)
+            df_ALL_T['ABAA_LV']['CAGR'] = round(CAGR_ABAA_Lv,2)
+            df_ALL_T['ABAA_LV']['MDD'] = round(MDD_ABAA_Lv,2)   
             print('#'*50)
             print('ABAA (Ori) - CAGR : {}'.format(round(CAGR_ABAA*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_ABAA*100,2)) + '%')
             print('ABAA (Lev) - CAGR : {}'.format(round(CAGR_ABAA_Lv*100,2)) + '%' + '   MDD : {}'.format(round(MDD_ABAA_Lv*100,2)) + '%')
@@ -332,6 +336,10 @@ class AA:
             CAGR_ADM_Lv = qs.stats.cagr(df_ALL_LV['ADM_BAL'])
             MDD_ADM = qs.stats.max_drawdown(df_ALL['ADM_BAL'])
             MDD_ADM_Lv = qs.stats.max_drawdown(df_ALL_LV['ADM_BAL'])
+            df_ALL_T['ADM']['CAGR'] = round(CAGR_ADM,2)
+            df_ALL_T['ADM']['MDD'] = round(MDD_ADM,2)
+            df_ALL_T['ADM_LV']['CAGR'] = round(CAGR_ADM_Lv,2)
+            df_ALL_T['ADM_LV']['MDD'] = round(MDD_ADM_Lv,2)   
             print('#'*50)
             print('ADM  (Ori) - CAGR : {}'.format(round(CAGR_ADM*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_ADM*100,2)) + '%')
             print('ADM  (Lev) - CAGR : {}'.format(round(CAGR_ADM_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_ADM_Lv*100,2)) + '%')
@@ -341,9 +349,13 @@ class AA:
             CAGR_ODM_Lv = qs.stats.cagr(df_ALL_LV['ODM_BAL'])
             MDD_ODM = qs.stats.max_drawdown(df_ALL['ODM_BAL'])
             MDD_ODM_Lv = qs.stats.max_drawdown(df_ALL_LV['ODM_BAL'])
+            df_ALL_T['ODM']['CAGR'] = round(CAGR_ODM,2)
+            df_ALL_T['ODM']['MDD'] = round(MDD_ODM,2)
+            df_ALL_T['ODM_LV']['CAGR'] = round(CAGR_ODM_Lv,2)
+            df_ALL_T['ODM_LV']['MDD'] = round(MDD_ODM_Lv,2)  
             print('#'*50)
             print('ODM  (Ori) - CAGR : {}'.format(round(CAGR_ODM*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_ODM*100,2)) + '%')
             print('ODM  (Lev) - CAGR : {}'.format(round(CAGR_ODM_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_ODM_Lv*100,2)) + '%')
         else:pass
-
+        
         return df_ALL, df_ALL_LV, df_ALL_T

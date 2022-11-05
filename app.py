@@ -31,7 +31,7 @@ form()
 sql = "select * from AA_T"
 df_DB_T = ReadData('AA_Today', sql)
 st.subheader("Today's Asset Choice")
-st.dataframe(df_DB_T[['DAA','VAA','BAA','ABAA','ODM']],width=1000,height=150)
+st.dataframe(df_DB_T[['DAA','VAA','BAA','ABAA','ODM']]['ASSET'],use_container_width=True)
 
 sql = "select * from AA"
 df_DB = ReadData('AA_Data', sql)
@@ -43,6 +43,7 @@ df_DB['Date'] = pd.to_datetime(df_DB['Date'], infer_datetime_format=True)
 df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
         
 st.subheader("BackTest Result")
+st.dataframe(df_DB_T[['DAA_CAGR','VAA','BAA','ABAA','ODM']]['CAGR','MDD'],use_container_width=True)
 
 st.line_chart(data=df_DB[['VAA_BAL','DAA_BAL','BAA_BAL','ABAA_BAL','ADM_BAL']], use_container_width=True)
 st.area_chart(data=df_DB[['VAA_DD','DAA_DD','BAA_DD','ABAA_DD','ADM_DD']], use_container_width=True)
