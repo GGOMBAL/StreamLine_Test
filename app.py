@@ -43,6 +43,8 @@ df_DB['Date'] = pd.to_datetime(df_DB['Date'], infer_datetime_format=True)
 df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
         
 st.subheader("BackTest Result")
-st.line_chart(data=df_DB[['VAA_BAL','DAA_BAL','BAA_BAL','ABAA_BAL','ADM_BAL','ODM_BAL']], use_container_width=True)
+
+st.line_chart(data=df_DB[['VAA_BAL','DAA_BAL','BAA_BAL','ABAA_BAL','ADM_BAL']], use_container_width=True)
+st.area_chart(data=df_DB[['VAA_DD','DAA_DD','BAA_DD','ABAA_DD','ADM_DD']], use_container_width=True)
 
 #st.dataframe(df_DB)
