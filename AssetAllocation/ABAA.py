@@ -137,8 +137,8 @@ def select_ASSET(x, mom_col_list_Off, mva_col_list_Def):
         momentum_sort_Def = x[mva_col_list_Def].sort_values(ascending=False)
 
         momentum1 = momentum_sort_Def[0]
-        momentum2 = momentum_sort_Def[0]
-        momentum3 = momentum_sort_Def[1]
+        momentum2 = momentum_sort_Def[1]
+        momentum3 = momentum_sort_Def[2]
 
         if momentum1 > 0:
             temp = x[x == momentum1].index[0].split('_')
