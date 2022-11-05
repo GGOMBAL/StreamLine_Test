@@ -30,8 +30,10 @@ form()
 
 sql = "select * from AA_T"
 df_DB_T = ReadData('AA_Today', sql)
+df_DB_T2 = df_DB_T[['DAA','VAA','BAA','ABAA','ODM']][['ASSET']]
+
 st.subheader("Today's Asset Choice")
-st.dataframe(df_DB_T[['DAA','VAA','BAA','ABAA','ODM']][['ASSET']],use_container_width=True)
+st.dataframe(df_DB_T2,use_container_width=True)
 
 sql = "select * from AA"
 df_DB = ReadData('AA_Data', sql)
