@@ -27,13 +27,13 @@ from Fred.Fred_Main import FRED
 ## 백테스트 기간 설정 ##
 
 #global start_day, end_day
-global M_GUI, M_BM, M_AA, M_QK, M_MT, M_FRED
+global M_BM, M_AA, M_QK, M_FRED
 
 M_BM  = False
 M_AA  = True
 M_QK  = False
 M_FRED = False
-
+       
 #now = datetime.now().strftime("%Y%m%d")
 start_day = datetime(2012,1,1)
 end_day = datetime.today()

@@ -42,11 +42,15 @@ def check_DB_from_drive(Universe, start_day, end_day):
         sql = "select * from ETF"
         df_DB = execute_sql('ETF_Data', sql)
         DB_col_list = list(df_DB)
-        df_DB['Date'] = pd.to_datetime(df_DB['index'], infer_datetime_format=True)
-        df_DB['Date'] = df_DB["Date"].dt.strftime("%Y-%m-%d")
-        df_DB['Date'] = pd.to_datetime(df_DB['Date'], infer_datetime_format=True)  
-        df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
-        
+
+        if 'index' in df_DB.columns:            
+            df_DB['Date'] = pd.to_datetime(df_DB['index'], infer_datetime_format=True)
+            #df_DB['Date'] = df_DB["Date"].dt.strftime("%Y-%m-%d")
+            df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
+        else:            
+            df_DB['Date'] = pd.to_datetime(df_DB['Date'], infer_datetime_format=True)  
+            df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
+
         DB_last_time = df_DB.index[-1]
         Current_time = date.today()
 
@@ -64,14 +68,14 @@ def check_DB_from_drive(Universe, start_day, end_day):
             #df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
             #df_DB.index.name = 'Date'
             
-    sql = "select * from ETF"
-    df_DB = execute_sql('ETF_Data', sql)
-    df_DB['Date'] = pd.to_datetime(df_DB['index'], infer_datetime_format=True)
-    df_DB['Date'] = df_DB["Date"].dt.strftime("%Y-%m-%d")
-    df_DB['Date'] = pd.to_datetime(df_DB['Date'], infer_datetime_format=True)
+    #sql = "select * from ETF"
+    #df_DB = execute_sql('ETF_Data', sql)
+    #df_DB['Date'] = pd.to_datetime(df_DB['index'], infer_datetime_format=True)
+    #df_DB['Date'] = df_DB["Date"].dt.strftime("%Y-%m-%d")
+    #df_DB['Date'] = pd.to_datetime(df_DB['Date'], infer_datetime_format=True)
 
-    df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
-
+    #df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
+    print('## DB Check Finished.. ##')
     return df_DB
 
 if __name__ == "__main__":

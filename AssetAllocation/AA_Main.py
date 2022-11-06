@@ -31,6 +31,7 @@ from AssetAllocation.CP_Lv import *
 from AssetAllocation.ODM import *
 from AssetAllocation.ODM_Lv import *
 from DB.db_helper import *
+from Momentum.Current_M import Current_Momentum
 
 #from BackTest_Main import start_day, end_day
 
@@ -69,10 +70,13 @@ class AA:
                    ,'GLD','TLT','HYG','LQD','UST','BND','VEA','BIL'
                    ,'TIP','SHV','EFO','EET','EEM','SHY','AGG','SSO'
                    ,'QLD','UWM','UGL','UBT','UJB','IEF','DBC','TNA'
-                   ,'VSS','EFA']
+                   ,'VSS','EFA','IAU','PDBC']
         
         df_DB = check_DB_from_drive(Universe, start_day, end_day)
 
+        df_MOM = Current_Momentum(start_day,end_day,df_DB,'Month')
+        insert_df_to_db('MOM_Data', 'MOM', df_MOM, option="replace")    
+    
     ## 백테스트 기간 설정 ##
         
         if  CP == True:
@@ -284,10 +288,10 @@ class AA:
             CAGR_DAA_Lv = qs.stats.cagr(df_ALL_LV['DAA_BAL'])
             MDD_DAA = qs.stats.max_drawdown(df_ALL['DAA_BAL'])
             MDD_DAA_Lv = qs.stats.max_drawdown(df_ALL_LV['DAA_BAL'])
-            df_ALL_T['DAA']['CAGR'] = round(CAGR_DAA*100,2)
-            df_ALL_T['DAA']['MDD'] = round(MDD_DAA*100,2)
-            df_ALL_T['DAA_LV']['CAGR'] = round(CAGR_DAA_Lv*100,2)
-            df_ALL_T['DAA_LV']['MDD'] = round(MDD_DAA_Lv*100,2)
+            df_ALL_T['DAA']['CAGR'] = str(round(CAGR_DAA*100,2)) + ' %'
+            df_ALL_T['DAA']['MDD'] = str(round(MDD_DAA*100,2)) + ' %'
+            df_ALL_T['DAA_LV']['CAGR'] = str(round(CAGR_DAA_Lv*100,2)) + ' %'
+            df_ALL_T['DAA_LV']['MDD'] = str(round(MDD_DAA_Lv*100,2)) + ' %'
             print('#'*50)
             print('DAA  (Ori) - CAGR : {}'.format(round(CAGR_DAA*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_DAA*100,2)) + '%')
             print('DAA  (Lev) - CAGR : {}'.format(round(CAGR_DAA_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_DAA_Lv*100,2)) + '%')
@@ -297,10 +301,10 @@ class AA:
             CAGR_VAA_Lv = qs.stats.cagr(df_ALL_LV['VAA_BAL'])
             MDD_VAA = qs.stats.max_drawdown(df_ALL['VAA_BAL'])
             MDD_VAA_Lv = qs.stats.max_drawdown(df_ALL_LV['VAA_BAL'])
-            df_ALL_T['VAA']['CAGR'] = round(CAGR_VAA*100,2)
-            df_ALL_T['VAA']['MDD'] = round(MDD_VAA*100,2)
-            df_ALL_T['VAA_LV']['CAGR'] = round(CAGR_VAA_Lv*100,2)
-            df_ALL_T['VAA_LV']['MDD'] = round(MDD_VAA_Lv*100,2)   
+            df_ALL_T['VAA']['CAGR'] = str(round(CAGR_VAA*100,2)) + ' %'
+            df_ALL_T['VAA']['MDD'] = str(round(MDD_VAA*100,2)) + ' %'
+            df_ALL_T['VAA_LV']['CAGR'] = str(round(CAGR_VAA_Lv*100,2)) + ' %'
+            df_ALL_T['VAA_LV']['MDD'] = str(round(MDD_VAA_Lv*100,2)) + ' %'   
             print('#'*50)
             print('VAA  (Ori) - CAGR : {}'.format(round(CAGR_VAA*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_VAA*100,2)) + '%')
             print('VAA  (Lev) - CAGR : {}'.format(round(CAGR_VAA_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_VAA_Lv*100,2)) + '%')
@@ -310,10 +314,10 @@ class AA:
             CAGR_BAA_Lv = qs.stats.cagr(df_ALL_LV['BAA_BAL'])
             MDD_BAA = qs.stats.max_drawdown(df_ALL['BAA_BAL'])
             MDD_BAA_Lv = qs.stats.max_drawdown(df_ALL_LV['BAA_BAL'])
-            df_ALL_T['BAA']['CAGR'] = round(CAGR_BAA*100,2)
-            df_ALL_T['BAA']['MDD'] = round(MDD_BAA*100,2)
-            df_ALL_T['BAA_LV']['CAGR'] = round(CAGR_BAA_Lv*100,2)
-            df_ALL_T['BAA_LV']['MDD'] = round(MDD_BAA_Lv*100,2)  
+            df_ALL_T['BAA']['CAGR'] = str(round(CAGR_BAA*100,2)) + ' %'
+            df_ALL_T['BAA']['MDD'] = str(round(MDD_BAA*100,2)) + ' %'
+            df_ALL_T['BAA_LV']['CAGR'] = str(round(CAGR_BAA_Lv*100,2)) + ' %'
+            df_ALL_T['BAA_LV']['MDD'] = str(round(MDD_BAA_Lv*100,2)) + ' %'  
             print('#'*50)
             print('BAA  (Ori) - CAGR : {}'.format(round(CAGR_BAA*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_BAA*100,2)) + '%')
             print('BAA  (Lev) - CAGR : {}'.format(round(CAGR_BAA_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_BAA_Lv*100,2)) + '%')
@@ -323,10 +327,10 @@ class AA:
             CAGR_ABAA_Lv = qs.stats.cagr(df_ALL_LV['ABAA_BAL'])
             MDD_ABAA = qs.stats.max_drawdown(df_ALL['ABAA_BAL'])
             MDD_ABAA_Lv = qs.stats.max_drawdown(df_ALL_LV['ABAA_BAL'])
-            df_ALL_T['ABAA']['CAGR'] = round(CAGR_ABAA*100,2)
-            df_ALL_T['ABAA']['MDD'] = round(MDD_ABAA*100,2)
-            df_ALL_T['ABAA_LV']['CAGR'] = round(CAGR_ABAA_Lv*100,2)
-            df_ALL_T['ABAA_LV']['MDD'] = round(MDD_ABAA_Lv*100,2)   
+            df_ALL_T['ABAA']['CAGR'] = str(round(CAGR_ABAA*100,2)) + ' %'
+            df_ALL_T['ABAA']['MDD'] = str(round(MDD_ABAA*100,2)) + ' %'
+            df_ALL_T['ABAA_LV']['CAGR'] = str(round(CAGR_ABAA_Lv*100,2)) + ' %'
+            df_ALL_T['ABAA_LV']['MDD'] = str(round(MDD_ABAA_Lv*100,2)) + ' %'  
             print('#'*50)
             print('ABAA (Ori) - CAGR : {}'.format(round(CAGR_ABAA*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_ABAA*100,2)) + '%')
             print('ABAA (Lev) - CAGR : {}'.format(round(CAGR_ABAA_Lv*100,2)) + '%' + '   MDD : {}'.format(round(MDD_ABAA_Lv*100,2)) + '%')
@@ -336,10 +340,10 @@ class AA:
             CAGR_ADM_Lv = qs.stats.cagr(df_ALL_LV['ADM_BAL'])
             MDD_ADM = qs.stats.max_drawdown(df_ALL['ADM_BAL'])
             MDD_ADM_Lv = qs.stats.max_drawdown(df_ALL_LV['ADM_BAL'])
-            df_ALL_T['ADM']['CAGR'] = round(CAGR_ADM*100,2)
-            df_ALL_T['ADM']['MDD'] = round(MDD_ADM*100,2)
-            df_ALL_T['ADM_LV']['CAGR'] = round(CAGR_ADM_Lv*100,2)
-            df_ALL_T['ADM_LV']['MDD'] = round(MDD_ADM_Lv*100,2)   
+            df_ALL_T['ADM']['CAGR'] = str(round(CAGR_ADM*100,2)) + ' %'
+            df_ALL_T['ADM']['MDD'] = str(round(MDD_ADM*100,2)) + ' %'
+            df_ALL_T['ADM_LV']['CAGR'] = str(round(CAGR_ADM_Lv*100,2)) + ' %'
+            df_ALL_T['ADM_LV']['MDD'] = str(round(MDD_ADM_Lv*100,2)) + ' %'   
             print('#'*50)
             print('ADM  (Ori) - CAGR : {}'.format(round(CAGR_ADM*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_ADM*100,2)) + '%')
             print('ADM  (Lev) - CAGR : {}'.format(round(CAGR_ADM_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_ADM_Lv*100,2)) + '%')
@@ -349,10 +353,10 @@ class AA:
             CAGR_ODM_Lv = qs.stats.cagr(df_ALL_LV['ODM_BAL'])
             MDD_ODM = qs.stats.max_drawdown(df_ALL['ODM_BAL'])
             MDD_ODM_Lv = qs.stats.max_drawdown(df_ALL_LV['ODM_BAL'])
-            df_ALL_T['ODM']['CAGR'] = round(CAGR_ODM*100,2)
-            df_ALL_T['ODM']['MDD'] = round(MDD_ODM*100,2)
-            df_ALL_T['ODM_LV']['CAGR'] = round(CAGR_ODM_Lv*100,2)
-            df_ALL_T['ODM_LV']['MDD'] = round(MDD_ODM_Lv*100,2)  
+            df_ALL_T['ODM']['CAGR'] = str(round(CAGR_ODM*100,2)) + ' %'
+            df_ALL_T['ODM']['MDD'] = str(round(MDD_ODM*100,2)) + ' %'
+            df_ALL_T['ODM_LV']['CAGR'] = str(round(CAGR_ODM_Lv*100,2)) + ' %'
+            df_ALL_T['ODM_LV']['MDD'] = str(round(MDD_ODM_Lv*100,2)) + ' %'  
             print('#'*50)
             print('ODM  (Ori) - CAGR : {}'.format(round(CAGR_ODM*100,2)) + '%' + '   MDD  : {}'.format(round(MDD_ODM*100,2)) + '%')
             print('ODM  (Lev) - CAGR : {}'.format(round(CAGR_ODM_Lv*100,2)) + '%' + '  MDD  : {}'.format(round(MDD_ODM_Lv*100,2)) + '%')

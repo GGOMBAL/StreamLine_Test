@@ -19,7 +19,7 @@ def get_momentum(x, df_ALL, universe):
     except:
         pass
    
-    return momentum
+    return round(momentum,3)
 
 def get_acc_momentum(x, df_ALL, universe):
     
@@ -35,7 +35,7 @@ def get_acc_momentum(x, df_ALL, universe):
     except:
         pass
 
-    return momentum
+    return round(momentum,3)
 
 def get_12m_momentum(x, df_ALL, universe):
     
@@ -49,6 +49,48 @@ def get_12m_momentum(x, df_ALL, universe):
     except:
         pass
 
-    return momentum
+    return round(momentum,3)
+
+def get_6m_momentum(x, df_ALL, universe):
+    
+    temp_list = [0 for i in range(len(x.index))]
+    momentum = pd.Series(temp_list, index=x.index)
+
+    try:
+        before6 = df_ALL[x.name-timedelta(days=185):x.name-timedelta(days=180)].iloc[-1][universe]      
+
+        momentum = x / before6 - 1
+    except:
+        pass
+
+    return round(momentum,3)
+
+def get_3m_momentum(x, df_ALL, universe):
+    
+    temp_list = [0 for i in range(len(x.index))]
+    momentum = pd.Series(temp_list, index=x.index)
+
+    try:
+        before3 = df_ALL[x.name-timedelta(days=95):x.name-timedelta(days=90)].iloc[-1][universe]      
+
+        momentum = x / before3 - 1
+    except:
+        pass
+
+    return round(momentum,3)
+
+def get_1m_momentum(x, df_ALL, universe):
+    
+    temp_list = [0 for i in range(len(x.index))]
+    momentum = pd.Series(temp_list, index=x.index)
+
+    try:
+        before1 = df_ALL[x.name-timedelta(days=35):x.name-timedelta(days=30)].iloc[-1][universe]      
+
+        momentum = x / before1 - 1
+    except:
+        pass
+
+    return round(momentum,3)
 
 
