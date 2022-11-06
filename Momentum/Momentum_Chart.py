@@ -56,22 +56,23 @@ def Mom_Chart(df_DB_M):
     
     df_DB = pd.concat([df_DB_Comment,df_DB_1M,df_DB_3M,df_DB_6M,df_DB_12M,df_DB_T],axis=1)
     
+    #df_DB_M['Date'] = df_DB_M["Date"].dt.strftime("%Y-%m-%d")
     df_DB_M = df_DB_M.set_index(keys=['Date'], inplace=False, drop=False)
     
-    df_DB_Stocks = (df_DB_M['SPY'] + df_DB_M['EFA'] + df_DB_M['EEM'])/3
-    df_DB_Stocks.columns = ['Stocks']
-    print(df_DB_Stocks.tail(1))
-    df_DB_Bonds = (df_DB_M['AGG'] + df_DB_M['SHY'] + df_DB_M['IEF'] + df_DB_M['TLT'])/4
-    df_DB_Bonds.columns = ['Bonds']
-    print(df_DB_Bonds.tail(1))
-    df_DB_Comm = (df_DB_M['DBC'] + df_DB_M['GSG'])/2
-    df_DB_Comm.columns = ['Commodity']
-    print(df_DB_Comm.tail(1))
-    df_DB_Gold = df_DB_M['IAU']
-    df_DB_Gold.columns = ['Gold']
-    print(df_DB_Gold.tail(1))
+    df_DB_Stocks = pd.DataFrame(columns=['Stocks'])
+    df_DB_Stocks['Stocks'] = (df_DB_M['SPY_M'] + df_DB_M['EFA_M'] + df_DB_M['EEM_M'])/3
+
+    df_DB_Bonds = pd.DataFrame(columns=['Bonds'])
+    df_DB_Bonds['Bonds'] = (df_DB_M['AGG_M'] + df_DB_M['SHY_M'] + df_DB_M['IEF_M'] + df_DB_M['TLT_M'])/4
+
+    df_DB_Comm = pd.DataFrame(columns=['Commodity'])
+    df_DB_Comm['Commodity'] = (df_DB_M['DBC_M'] + df_DB_M['GSG_M'])/2
     
+    df_DB_Gold = pd.DataFrame(columns=['Gold'])
+    df_DB_Gold['Gold'] = df_DB_M['IAU_M']
+      
     df_DB2 = pd.concat([df_DB_Stocks,df_DB_Bonds,df_DB_Comm,df_DB_Gold],axis=1)
     
+    print(df_DB2)
     
-    return df_DB
+    return df_DB, df_DB2
