@@ -39,3 +39,4 @@ def Current_Momentum(start_day, end_day, df_DB, Sample):
     #df_MOM = df_MOM.drop(Universe, axis=1)
     
     return df_MOM.tail(360)
+

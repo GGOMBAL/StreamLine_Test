@@ -4,6 +4,7 @@ import numpy as np
 import sqlite3
 import datetime
 from AssetAllocation.ChangeLevAsset import ChangeKorAsset
+from Momentum.Momentum_Chart import Mom_Chart
 
 #from DB.db_helper import execute_sql
 global Strategy,time_range_inp
@@ -47,32 +48,13 @@ df_DB_T = df_DB_T.drop(['index'], axis = 1, inplace=False)
 
 st.write("Asset Momentums")
 
-col = ['1Month','3Month','6Month','12Month','Total Momentum']
-indexs = ['SPY','EFA','EEM','AGG','SHY','IEF','TLT','DBC','GSG','IAU']
-Col_M = ['SPY_M','EFA_M','EEM_M','AGG_M','SHY_M','IEF_M','TLT_M','DBC_M','GSG_M','IAU_M']
-
 sql = "select * from MOM"
 df_DB_M_Temp = ReadData('MOM_Data', sql)
-#df_DB_M_Temp['Date'] = df_DB_M_Temp["Date"].dt.strftime("%Y-%m-%d")
-df_DB_M_Temp = df_DB_M_Temp.set_index(keys=['Date'], inplace=False, drop=False)
-df_DB_M_M = df_DB_M_Temp[Col_M].tail(1)
-print(df_DB_M_M)
+df_DB_M = Mom_Chart(df_DB_M_Temp)
 
-#df = pd.DataFrame(df_DB_M_M.tail(1), columns = ['Total Momentum'], index = [indexs])
-#print(df)
+st.dataframe(df_DB_M,use_container_width=True)
+#st.line_chart(data=df_DB_M_Temp[Col_M], use_container_width=True)
 
-#df_DB_M_M = df_DB_M_M.set_index(keys=[Col_M], inplace=False, drop=False)
-
-
-#df_DB_M_1M = df_DB_M_Temp[['SPY_M','EFA_M','EEM_M','AGG_M','SHY_M','IEF_M','TLT_M','DBC_M','GSG_M','IAU_M']]
-#df_DB_M_3M = df_DB_M_Temp[['SPY_M','EFA_M','EEM_M','AGG_M','SHY_M','IEF_M','TLT_M','DBC_M','GSG_M','IAU_M']]
-#df_DB_M_6M = df_DB_M_Temp[['SPY_M','EFA_M','EEM_M','AGG_M','SHY_M','IEF_M','TLT_M','DBC_M','GSG_M','IAU_M']]
-#df_DB_M_12M = df_DB_M_Temp[['SPY_M','EFA_M','EEM_M','AGG_M','SHY_M','IEF_M','TLT_M','DBC_M','GSG_M','IAU_M']]
-
-#df_DB_M = pd.DataFrame(columns=[col],index=[indexs])
-
-st.dataframe(df_DB_M_M[Col_M].tail(1),use_container_width=True)
-st.line_chart(data=df_DB_M_Temp[Col_M], use_container_width=True)
 st.write("Today's Asset Choice : Global")
 
 if Lev_Strategy == 'Basic':
