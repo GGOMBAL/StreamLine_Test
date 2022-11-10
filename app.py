@@ -99,6 +99,6 @@ else:pass
 st.write("BackTest Result : CAGR")
 st.line_chart(data=df_DB[['VAA_BAL','DAA_BAL','BAA_BAL','ABAA_BAL','ADM_BAL','ODM_BAL']], use_container_width=True)
 st.write("BackTest Result : MDD")
-st.area_chart(data=df_DB[['VAA_DD','DAA_DD','BAA_DD','ABAA_DD','ADM_DD','ODM_DD']], use_container_width=True)
+st.line_chart(data=df_DB[['VAA_DD','DAA_DD','BAA_DD','ABAA_DD','ADM_DD','ODM_DD']], use_container_width=True)
 
 #st.dataframe(df_DB)
