@@ -90,11 +90,11 @@ df_DB = df_DB.set_index(keys=['Date'], inplace=False, drop=True)
 
 st.write("BackTest Result")
 
-if Lev_Strategy == 'Basic':
-    st.dataframe(df_DB_T[['DAA','VAA','BAA','ABAA','ODM','ADM']].iloc[[3,4]],use_container_width=True)
-elif Lev_Strategy == 'Leverage X2':
-    st.dataframe(df_DB_T[['DAA_LV','VAA_LV','BAA_LV','ABAA_LV','ODM_LV','ADM_LV']].iloc[[3,4]],use_container_width=True)
-else:pass
+#if Lev_Strategy == 'Basic':
+#    st.dataframe(df_DB_T[['DAA','VAA','BAA','ABAA','ODM','ADM']].iloc[[3,4]],use_container_width=True)
+#elif Lev_Strategy == 'Leverage X2':
+#    st.dataframe(df_DB_T[['DAA_LV','VAA_LV','BAA_LV','ABAA_LV','ODM_LV','ADM_LV']].iloc[[3,4]],use_container_width=True)
+#else:pass
     
 st.write("BackTest Result : CAGR")
 st.line_chart(data=df_DB[['VAA_BAL','DAA_BAL','BAA_BAL','ABAA_BAL','ADM_BAL','ODM_BAL']], use_container_width=True)
