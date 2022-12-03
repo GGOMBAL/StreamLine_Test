@@ -15,11 +15,11 @@ def ChangeKorAsset(df_DB):
                ,'QLD','UWM','UGL','UBT','UJB','IEF','DBC','TNA'
                ,'VSS','EFA']
     
-    mydic =  {'SPY':'379800','QQQ':'379810','IWM':'280930','GLD':'132030'
-             ,'TLT':'304660','HYG':'182490','VGK':'195930','EWJ':'241180'
-             ,'VNQ':'181480','EEM':'291890','GSG':'218420','SHV':'214980'
-             ,'IEF':'114460','HYG':'136340','EFA':'251350','AGG':'273130'
-             ,'LQD':'332620','SHY':'261240','DBC':'261220','BIL':'329750'}
+    mydic =  {'SPY':'379800','IWM':'280930','QQQ':'379810','VGK':'195930','EWJ':'241180','VWO':'195980','VNQ':'181480','GSG':'218420'
+             ,'GLD':'132030','TLT':'304660','HYG':'182490','LQD':'332620','UST':'xxxxxx','BND':'xxxxxx','VEA':'xxxxxx','BIL':'329750'
+             ,'TIP':'xxxxxx','SHV':'214980','EFO':'214980','EET':'214980','EEM':'291890','SHY':'261240','AGG':'273130','SSO':'xxxxxx'
+             ,'QLD':'xxxxxx','UWM':'xxxxxx','UGL':'xxxxxx','UBT':'xxxxxx','UJB':'xxxxxx','IEF':'114460','DBC':'261220','TNA':'xxxxxx'
+             ,'VSS':'xxxxxx','EFA':'251350'}
        
     for i in range(len(df_DB.columns)):
         keys = df_DB[df_DB.columns[i]]['ASSET']
