@@ -48,12 +48,12 @@ df_DB_T = df_DB_T.drop(['index'], axis = 1, inplace=False)
 
 st.write("Asset Momentums")
 
-sql = "select * from MOM"
-df_DB_M_Temp = ReadData('MOM_Data', sql)
-df_DB_M, df_DB2_M = Mom_Chart(df_DB_M_Temp)
+#sql = "select * from MOM"
+#df_DB_M_Temp = ReadData('MOM_Data', sql)
+#df_DB_M, df_DB2_M = Mom_Chart(df_DB_M_Temp)
 
-st.dataframe(df_DB_M,use_container_width=True)
-st.line_chart(data=df_DB2_M.tail(180), use_container_width=True)
+#st.dataframe(df_DB_M,use_container_width=True)
+#st.line_chart(data=df_DB2_M.tail(180), use_container_width=True)
 
 st.write("Today's Asset Choice : Global")
 
